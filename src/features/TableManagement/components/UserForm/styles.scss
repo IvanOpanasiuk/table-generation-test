@@ -1,0 +1,58 @@
+.userForm-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.userForm {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 280px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+
+  &::placeholder {
+    color: transparent;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #C2CBD1;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  margin-top: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+@media (max-width: 480px) {
+  .userForm-container {
+    padding: 0;
+    width: 100%;
+  }
+  .userForm {
+    border-radius: 0;
+  }
+}
