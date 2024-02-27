@@ -1,8 +1,7 @@
 import React from 'react';
-import './styles.module.scss';
+import './style.scss';
 
-interface InputProps {
-    key: string | number;
+type InputProps = {
     name: string;
     type: string;
     placeholder?: string;
@@ -11,14 +10,10 @@ interface InputProps {
     className?: string;
 }
 
-export const Input: React.FC<InputProps> = ({ name = 'name', type = 'text', placeholder, value, onChange, className }) => {
+export const Input: React.FC<InputProps> = ({className = '', ...props}) => {
     return (
         <input
-            name={name}
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
+            {...props}
             className={`input ${className}`}
         />
     );

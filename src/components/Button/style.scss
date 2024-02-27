@@ -1,0 +1,36 @@
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  &-close__table {
+    background: none;
+    color: #dc3545;
+  }
+}
+
+
+.link-button {
+  padding: 10px 20px;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  background: transparent;
+  outline: none;
+  text-decoration: underline;
+}
+.button-delete__row {
+  color: #dc3545;
+}
+.button-edit__row {
+  margin-left: 10px;
+  color: #ffc107;
+}

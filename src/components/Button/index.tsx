@@ -1,16 +1,25 @@
 import React from 'react';
-import './styles.module.scss';
+import './style.scss';
 
-interface ButtonProps {
+type ButtonProps = {
     children: React.ReactNode;
-    onClick?: () => void;
+    onClick?: any;
     className?: string;
+    type?: 'button' | 'submit' | 'reset';
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, onClick, className }) => {
+export const Button: React.FC<ButtonProps> = ({ children, onClick, className, type }) => {
     return (
-        <button className={`button ${className}`} onClick={onClick}>
+        <button type={type} className={`button ${className}`} onClick={onClick}>
             {children}
         </button>
     );
 };
+
+export const LinkButton: React.FC<ButtonProps> = ({ children, onClick, className }) => {
+    return (
+        <a className={`link-button ${className}`} onClick={onClick}>
+            {children}
+        </a>
+    );
+}

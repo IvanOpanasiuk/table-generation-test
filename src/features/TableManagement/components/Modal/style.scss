@@ -1,0 +1,56 @@
+.edit-modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.edit-modal {
+  background-color: white;
+  border-radius: 4px;
+  max-width: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 80%;
+}
+
+.edit-modal__header {
+  display: flex;
+  justify-content: end;
+}
+
+.edit-modal__close-btn {
+  align-self: flex-end;
+  border: none;
+  //background: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin: 0.5rem;
+}
+
+.edit-modal__form {
+  padding: 20px;
+}
+
+.edit-modal__form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-modal__save-btn {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .edit-modal {
+    max-width: 100%;
+  }
+}

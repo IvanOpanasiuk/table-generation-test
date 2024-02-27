@@ -1,10 +1,10 @@
-.userForm-container {
+.user-form-container {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
 
-.userForm {
+.user-form {
   background: #ffffff;
   padding: 20px;
   border-radius: 8px;
@@ -13,26 +13,7 @@
   max-width: 280px;
 }
 
-.inputField {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-
-  &:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-  }
-
-  &::placeholder {
-    color: transparent;
-  }
-}
-
-.submitButton {
+.submit-button {
   width: 100%;
   padding: 10px;
   background-color: #C2CBD1;
@@ -48,11 +29,11 @@
 }
 
 @media (max-width: 480px) {
-  .userForm-container {
+  .user-form-container {
     padding: 0;
     width: 100%;
   }
-  .userForm {
+  .user-form {
     border-radius: 0;
   }
 }

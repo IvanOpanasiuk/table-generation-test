@@ -1,26 +1,27 @@
 import React from 'react';
-// @ts-ignore
-import Select, { ValueType, OptionTypeBase } from 'react-select';
+import Select, { ValueType } from 'react-select';
 
-interface Option {
-    value: string;
-    label: string;
-}
-
-interface CustomSelectProps {
+type CustomSelectProps = {
     name: string;
-    options: Option[];
-    value?: Option;
-    onChange: (value: ValueType<OptionTypeBase>) => void;
+    options: { value: string; label: string }[];
+    value?: ValueType<{ value: string; label: string }, false>;
+    defaultValue?: ValueType<{ value: string; label: string }, false>;
+    onChange: (value: ValueType<{ value: string; label: string }, false>) => void;
 }
 
-export const CustomSelect: React.FC<CustomSelectProps> = ({ name, options, onChange, value }) => {
+
+export const CustomSelect: React.FC<CustomSelectProps> = ({...props}) => {
     return (
         <Select
-            name={name}
-            options={options}
-            onChange={onChange}
-            value={value}
+            styles={{
+                dropdownIndicator: (provided, state) => ({
+                    ...provided,
+                    transform: state.selectProps.menuIsOpen && "rotate(180deg)"
+                })
+            }}
+
+            {...props}
+
         />
     );
 };

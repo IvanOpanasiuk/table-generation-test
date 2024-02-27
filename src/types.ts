@@ -14,3 +14,11 @@ export interface IOption {
 }
 
 export type ColumnsType = Column<IData>[]
+
+export type TableRow = {
+    id: string;
+    name: string;
+    surname: string;
+    age: number;
+    city: string;
+};
