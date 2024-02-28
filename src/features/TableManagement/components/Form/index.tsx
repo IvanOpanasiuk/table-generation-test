@@ -1,4 +1,10 @@
-import React, { FormEvent, useCallback, useState } from "react";
+import React, {
+  FormEvent,
+  memo,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 import { resetFormData, updateFormData } from "../../store/slice/formSlice.ts";
 import { Button, CustomSelect, Input } from "../../../../components";
@@ -11,10 +17,14 @@ import { inputsMap } from "../../constants";
 
 import "./style.scss";
 
-const FormComponent = () => {
+const FormComponent = memo(() => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState<ErrorType>({});
   const formData: IFormData = useSelector((state: RootState) => state.forms);
+
+  useEffect(() => {
+    setErrors({});
+  }, [formData]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,9 +64,9 @@ const FormComponent = () => {
   return (
     <div className="user-form-container">
       <form onSubmit={handleSubmit} className="user-form">
-        {Array.from(inputsMap(formData).values()).map((input, index) => (
-          <div key={index}>
-            <Input key={index} {...input} onChange={handleChange} />
+        {Array.from(inputsMap(formData).values()).map((input) => (
+          <div key={input.name}>
+            <Input {...input} onChange={handleChange} />
             <span className={`error ${errors[input.name] && "visible"}`}>
               {errors[input.name]}
             </span>
@@ -80,6 +90,6 @@ const FormComponent = () => {
       </form>
     </div>
   );
-};
+});
 
 export default FormComponent;

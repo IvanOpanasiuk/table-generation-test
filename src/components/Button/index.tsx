@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./style.scss";
 
 type ButtonProps = {
@@ -8,27 +8,22 @@ type ButtonProps = {
   type?: "button" | "submit" | "reset";
 };
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  className,
-  type,
-}) => {
-  return (
-    <button type={type} className={`button ${className}`} onClick={onClick}>
-      {children}
-    </button>
-  );
-};
+export const Button: React.FC<ButtonProps> = memo(
+  ({ children, onClick, className, type }) => {
+    return (
+      <button type={type} className={`button ${className}`} onClick={onClick}>
+        {children}
+      </button>
+    );
+  },
+);
 
-export const LinkButton: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  className,
-}) => {
-  return (
-    <a className={`link-button ${className}`} onClick={onClick}>
-      {children}
-    </a>
-  );
-};
+export const LinkButton: React.FC<ButtonProps> = memo(
+  ({ children, onClick, className }) => {
+    return (
+      <a className={`link-button ${className}`} onClick={onClick}>
+        {children}
+      </a>
+    );
+  },
+);

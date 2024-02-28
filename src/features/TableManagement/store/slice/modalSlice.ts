@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { produce } from "immer";
 import { TableRow } from "../../../../types.ts";
 
 interface IModalState {
@@ -15,12 +16,16 @@ export const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action: PayloadAction<TableRow>) => {
-      state.isOpen = true;
-      state.rowData = action.payload;
+      return produce(state, (draftState) => {
+        draftState.isOpen = true;
+        draftState.rowData = action.payload;
+      });
     },
     closeModal: (state) => {
-      state.isOpen = false;
-      state.rowData = undefined;
+      return produce(state, (draftState) => {
+        draftState.isOpen = false;
+        draftState.rowData = undefined;
+      });
     },
   },
 });

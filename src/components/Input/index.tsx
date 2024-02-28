@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./style.scss";
 
 type InputProps = {
@@ -10,6 +10,8 @@ type InputProps = {
   className?: string;
 };
 
-export const Input: React.FC<InputProps> = ({ className = "", ...props }) => {
-  return <input {...props} className={`input ${className}`} />;
-};
+export const Input: React.FC<InputProps> = memo(
+  ({ className = "", ...props }) => {
+    return <input {...props} className={`input ${className}`} />;
+  },
+);

@@ -11,7 +11,7 @@
     background-color: #0056b3;
   }
 
-  &-close__table {
+  &-close {
     background: none;
     color: #dc3545;
     font-size: 30px;
@@ -21,15 +21,8 @@
     }
   }
 
-  &-close__modal {
-    background: none;
-    color: #dc3545;
-    font-size: 30px;
-
-
-    &:hover {
-      background-color: #fff;
-    }
+  &-copy__table {
+    margin: 10px 0 10px;
   }
 }
 

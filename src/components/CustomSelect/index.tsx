@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Select, { StylesConfig } from "react-select";
 import { IOption } from "../../types.ts";
 
@@ -17,9 +17,11 @@ const customStyles: StylesConfig = {
   }),
 };
 
-export const CustomSelect: React.FC<CustomSelectProps> = ({ ...props }) => {
-  return (
-    // @ts-ignore
-    <Select styles={customStyles} {...props} />
-  );
-};
+export const CustomSelect: React.FC<CustomSelectProps> = memo(
+  ({ ...props }) => {
+    return (
+      // @ts-ignore
+      <Select styles={customStyles} {...props} />
+    );
+  },
+);

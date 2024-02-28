@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { produce } from "immer";
 import { IFormData } from "../../types.ts";
 
 const initialState: IFormData = {
@@ -13,10 +14,14 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     updateFormData: (state, action: PayloadAction<IFormData>) => {
-      return { ...state, ...action.payload };
+      return produce(state, (draftState) => {
+        Object.assign(draftState, action.payload);
+      });
     },
     syncFormsData: (state, action: PayloadAction<FormData>) => {
-      return { ...state, ...action.payload };
+      return produce(state, (draftState) => {
+        Object.assign(draftState, action.payload);
+      });
     },
     resetFormData: () => initialState,
   },

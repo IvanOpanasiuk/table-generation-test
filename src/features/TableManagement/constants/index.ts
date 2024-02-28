@@ -7,6 +7,7 @@ export const inputsMap = (formData: IFormData) =>
       {
         type: "text",
         name: "name",
+        label: "Name",
         value: formData.name,
         placeholder: "Name",
         className: "input-field",
@@ -17,6 +18,7 @@ export const inputsMap = (formData: IFormData) =>
       {
         type: "text",
         name: "surname",
+        label: "Surname",
         value: formData.surname,
         placeholder: "Surname",
         className: "input-field",
@@ -27,6 +29,7 @@ export const inputsMap = (formData: IFormData) =>
       {
         type: "number",
         name: "age",
+        label: "Age",
         value: formData.age,
         placeholder: "Age",
         className: "input-field",
