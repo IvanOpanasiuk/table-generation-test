@@ -1,20 +1,15 @@
-import React from 'react';
-import './style.scss';
+import React from "react";
+import "./style.scss";
 
 type InputProps = {
-    name: string;
-    type: string;
-    placeholder?: string;
-    value: string | number;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    className?: string;
-}
+  name: string;
+  type: string;
+  placeholder?: string;
+  value: string | number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+};
 
-export const Input: React.FC<InputProps> = ({className = '', ...props}) => {
-    return (
-        <input
-            {...props}
-            className={`input ${className}`}
-        />
-    );
+export const Input: React.FC<InputProps> = ({ className = "", ...props }) => {
+  return <input {...props} className={`input ${className}`} />;
 };

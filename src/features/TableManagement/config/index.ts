@@ -1,3 +1,1 @@
-import {citiesOptions} from './citiesOptions.ts';
-
-export {citiesOptions};
+export { citiesOptions } from "./citiesOptions.ts";

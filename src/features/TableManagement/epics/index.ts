@@ -1,6 +1,4 @@
-import { combineEpics } from 'redux-observable';
-import { formSyncEpic } from './formSyncEpic';
+import { combineEpics } from "redux-observable";
+import { formSyncEpic } from "./formSyncEpic";
 
-export const rootEpic = combineEpics(
-    formSyncEpic,
-);
+export const rootEpic = combineEpics(formSyncEpic);
