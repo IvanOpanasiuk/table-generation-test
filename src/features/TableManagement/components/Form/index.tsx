@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {validate} from "../../../../utils/";
 import {citiesOptions} from "../../config";
 import {RootState, IFormData} from "../../types.ts";
+import {inputsMap} from "../../constants";
 
 import './style.scss';
 
@@ -20,7 +21,7 @@ const FormComponent = () => {
         dispatch(updateFormData({ ...formData, [name]: value }));
     }, [dispatch, formData]);
 
-    const handleSelect = useCallback((selectedOption) => {
+    const handleSelect = useCallback((selectedOption: any) => {
         dispatch(updateFormData({ ...formData, city: selectedOption.value }));
     }, [dispatch, formData]);
 
@@ -38,20 +39,14 @@ const FormComponent = () => {
             return;
         }
 
-        setErrors(errors);
+        setErrors(errors as Record<string, string>);
         return;
     };
-
-    const inputsMap = new Map([
-        ['name', { type: 'text', name: 'name', value: formData.name, placeholder: 'Name', className: 'input-field' }],
-        ['surname', { type: 'text', name: 'surname', value: formData.surname, placeholder: 'Surname', className: 'input-field' }],
-        ['age', { type: 'number', name: 'age', value: formData.age, placeholder: 'Age', className: 'input-field' }],
-    ]);
 
     return (
         <div className="user-form-container">
             <form onSubmit={handleSubmit} className="user-form">
-                {Array.from(inputsMap.values()).map((input, index) => (
+                {Array.from(inputsMap(formData).values()).map((input, index) => (
                     <div key={index}>
                         <Input
                             key={index}

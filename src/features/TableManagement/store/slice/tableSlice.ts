@@ -29,7 +29,7 @@ const tableSlice = createSlice({
     reducers: {
         addRowToFirstTable: (state, action: PayloadAction<Omit<IData, 'id'>>) => {
             const row = action.payload;
-            const newRow = { ...row };
+            const newRow = { ...row, id: uuid() };
 
             const firstTableKey = Object.keys(state.tables)[0];
             if (firstTableKey) {

@@ -12,7 +12,7 @@ export const formSlice = createSlice({
     name: 'form',
     initialState,
     reducers: {
-        updateFormData: (state, action: PayloadAction<FormData>) => {
+        updateFormData: (state, action: PayloadAction<IFormData>) => {
             return { ...state, ...action.payload };
         },
         syncFormsData: (state, action: PayloadAction<FormData>) => {

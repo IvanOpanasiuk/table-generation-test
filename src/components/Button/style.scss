@@ -14,6 +14,22 @@
   &-close__table {
     background: none;
     color: #dc3545;
+    font-size: 30px;
+    margin: 0;
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  &-close__modal {
+    background: none;
+    color: #dc3545;
+    font-size: 30px;
+
+
+    &:hover {
+      background-color: #fff;
+    }
   }
 }
 

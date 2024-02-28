@@ -1,27 +1,28 @@
 import React from 'react';
-import Select, { ValueType } from 'react-select';
+import Select, { StylesConfig } from 'react-select';
+import { IOption } from "../../types.ts";
 
 type CustomSelectProps = {
     name: string;
-    options: { value: string; label: string }[];
-    value?: ValueType<{ value: string; label: string }, false>;
-    defaultValue?: ValueType<{ value: string; label: string }, false>;
-    onChange: (value: ValueType<{ value: string; label: string }, false>) => void;
+    options: IOption[];
+    value?: IOption | null;
+    defaultValue?: IOption | null;
+    onChange: (value: IOption | null) => void;
 }
 
+const customStyles: StylesConfig = {
+    dropdownIndicator: (provided, state) => ({
+        ...provided,
+        transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : undefined
+    }),
+};
 
-export const CustomSelect: React.FC<CustomSelectProps> = ({...props}) => {
+export const CustomSelect: React.FC<CustomSelectProps> = ({ ...props }) => {
     return (
+    // @ts-ignore
         <Select
-            styles={{
-                dropdownIndicator: (provided, state) => ({
-                    ...provided,
-                    transform: state.selectProps.menuIsOpen && "rotate(180deg)"
-                })
-            }}
-
+            styles={customStyles}
             {...props}
-
         />
     );
 };

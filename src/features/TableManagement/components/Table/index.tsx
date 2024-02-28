@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import { useTable } from 'react-table';
 
 import { ColumnsType, TableRow } from "../../../../types";
@@ -22,7 +22,7 @@ export const TableComponent: React.FC<TableProps> = ({ tableIndex, tableId, data
 
     const isMainTable = tableIndex === 0;
 
-    const handleDelete = React.useCallback((rowId: string) => {
+    const handleDelete = useCallback((rowId: string) => {
         dispatch(deleteTableRow({ tableId, rowId }));
         setIsModalOpen(false);
         setEditingRow(null);
@@ -35,7 +35,7 @@ export const TableComponent: React.FC<TableProps> = ({ tableIndex, tableId, data
     };
 
     const handleSave = (newData: Partial<TableRow>) => {
-        if (editingRow && editingRow.id) {
+        if (editingRow?.id) {
             dispatch(editTableRow({
                 tableId,
                 rowId: editingRow.id,
@@ -55,7 +55,6 @@ export const TableComponent: React.FC<TableProps> = ({ tableIndex, tableId, data
         if(tableIndex === 0) {
             return;
         }
-
         dispatch(deleteTable( tableId ));
     };
 
@@ -89,7 +88,7 @@ export const TableComponent: React.FC<TableProps> = ({ tableIndex, tableId, data
         },
     ], []);
 
-    const tableData = React.useMemo(() => data, [data]);
+    const tableData = useMemo(() => data, [data]);
 
     const {
         getTableProps,
@@ -104,7 +103,7 @@ export const TableComponent: React.FC<TableProps> = ({ tableIndex, tableId, data
         <>
             <div className="table-header">
                 { isMainTable && <Button onClick={handleCopyTable}>Copy Table</Button> }
-                { !isMainTable && <Button className={'button-close__table'} onClick={handleDeleteTable}>X</Button> }
+                { !isMainTable && <Button className={'button-close__table'} onClick={handleDeleteTable}>&times;</Button> }
             </div>
             <table {...getTableProps()} className="table">
                 <thead>

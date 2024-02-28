@@ -2,7 +2,6 @@
   min-width: 300px;
   width: 100%;
   border-collapse: collapse;
-  //margin: 5px 0;
   font-size: 0.9em;
   font-family: sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -84,6 +83,6 @@
   justify-content: end;
 
   button {
-    margin: 10px;
+    margin: 10px 0 10px;
   }
 }
