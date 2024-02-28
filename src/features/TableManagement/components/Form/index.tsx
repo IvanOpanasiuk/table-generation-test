@@ -1,20 +1,21 @@
-import {FormEvent, useCallback, useState} from 'react';
+import React, {FormEvent, useCallback, useState} from 'react';
 
 import { resetFormData, updateFormData} from "../../store/slice/formSlice.ts";
 import { Button, CustomSelect, Input } from "../../../../components";
 import {addRowToFirstTable} from "../../store/slice/tableSlice.ts";
 import { useDispatch, useSelector } from "react-redux";
+import {validate} from "../../../../utils/";
 import {citiesOptions} from "../../config";
-import {RootState} from "../../types.ts";
+import {RootState, IFormData} from "../../types.ts";
 
 import './style.scss';
 
 const FormComponent = () => {
     const dispatch = useDispatch();
-    const [errors, setErrors] = useState({});
-    const formData = useSelector((state: RootState) => state.forms);
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const formData: IFormData = useSelector((state: RootState) => state.forms);
 
-    const handleChange = useCallback((e) => {
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         dispatch(updateFormData({ ...formData, [name]: value }));
     }, [dispatch, formData]);
@@ -25,13 +26,20 @@ const FormComponent = () => {
 
     const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const {isValid, errors} = validate(formData);
 
-        dispatch(addRowToFirstTable({
-            ...formData,
-            age: parseInt(formData.age, 10),
-        }));
-        dispatch(resetFormData());
-        setErrors({});
+        if (isValid) {
+            dispatch(addRowToFirstTable({
+                ...formData,
+                age: formData.age,
+            }));
+            dispatch(resetFormData());
+            setErrors({});
+            return;
+        }
+
+        setErrors(errors);
+        return;
     };
 
     const inputsMap = new Map([
@@ -50,7 +58,7 @@ const FormComponent = () => {
                             {...input}
                             onChange={handleChange}
                         />
-                        {errors[input.name] && <span style={{fontSize: '10px', color: 'red'}} className="error">{errors[input.name]}</span>}
+                        <span className={`error ${errors[input.name] && 'visible'}`}>{errors[input.name]}</span>
                     </div>
                 ))}
 

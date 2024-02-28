@@ -28,6 +28,15 @@
   }
 }
 
+.error {
+  font-size: 10px;
+  color: red;
+}
+
+.visible {
+  display: inline;
+}
+
 @media (max-width: 480px) {
   .user-form-container {
     padding: 0;

@@ -1,21 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {IFormData} from "../../types.ts";
 
-interface FormData {
-    name: string;
-    surname: string;
-    age: string;
-    city: string;
-}
-
-interface SyncFormDataAction {
-    type: string;
-    payload: FormData;
-}
-
-const initialState: FormData = {
+const initialState: IFormData = {
     name: '',
     surname: '',
-    age: '',
+    age: 18,
     city: 'riga',
 };
 
@@ -33,6 +22,10 @@ export const formSlice = createSlice({
     },
 });
 
-export const { updateFormData, syncFormsData, resetFormData,clearFormData } = formSlice.actions;
+export const {
+    updateFormData,
+    syncFormsData,
+    resetFormData
+} = formSlice.actions;
 
 export default formSlice.reducer;

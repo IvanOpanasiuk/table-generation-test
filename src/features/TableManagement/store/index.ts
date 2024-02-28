@@ -22,4 +22,5 @@ export const store = configureStore({
 
 export type AppDispatch = typeof store.dispatch;
 
-epicMiddleware.run(rootEpic as Epic<RootAction, RootAction, RootState>);
+epicMiddleware.run(rootEpic as unknown as Epic<RootAction, RootAction, RootState>);
+

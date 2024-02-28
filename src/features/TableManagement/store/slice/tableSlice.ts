@@ -2,13 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
 import { IData } from '../../../../types.ts';
 
-interface ITableRow extends Omit<IData, 'id'> {
-    id: string;
-}
-
 interface ITable {
     id: string;
-    rows: ITableRow[];
+    rows: IData[];
 }
 
 interface ITableState {
@@ -31,19 +27,19 @@ const tableSlice = createSlice({
     name: 'table',
     initialState,
     reducers: {
-        addRowToFirstTable: (state, action: PayloadAction<Omit<ITableRow, 'id'>>) => {
+        addRowToFirstTable: (state, action: PayloadAction<Omit<IData, 'id'>>) => {
             const row = action.payload;
             const newRow = { ...row };
 
             const firstTableKey = Object.keys(state.tables)[0];
             if (firstTableKey) {
-                state.tables[firstTableKey].rows.push(newRow);
+                state.tables[firstTableKey].rows.push(newRow as IData);
             } else {
                 console.error("No tables available to add a row.");
             }
         },
 
-        editTableRow: (state, action: PayloadAction<{ tableId: string, rowId: string, newData: Partial<ITableRow> }>) => {
+        editTableRow: (state, action: PayloadAction<{ tableId: string, rowId: string, newData: Partial<IData> }>) => {
             const { tableId, rowId, newData } = action.payload;
             const table = state.tables[tableId];
             const rowIndex = table.rows.findIndex(row => row.id === rowId);
@@ -71,5 +67,12 @@ const tableSlice = createSlice({
     },
 });
 
-export const { addRowToFirstTable, editTableRow, deleteTableRow, deleteTable, copyTable } = tableSlice.actions;
+export const {
+    addRowToFirstTable,
+    editTableRow,
+    deleteTableRow,
+    deleteTable,
+    copyTable
+} = tableSlice.actions;
+
 export default tableSlice.reducer;
