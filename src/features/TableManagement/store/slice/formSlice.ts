@@ -5,7 +5,7 @@ const initialState: IFormData = {
   name: "",
   surname: "",
   age: 18,
-  city: "riga",
+  city: "Riga",
 };
 
 export const formSlice = createSlice({

@@ -67,7 +67,10 @@ const FormComponent = () => {
           name="city"
           options={citiesOptions}
           onChange={handleSelect}
-          value={citiesOptions.find((option) => option.value === formData.city)}
+          value={citiesOptions.find(
+            (option) =>
+              option.value.toLowerCase() === formData.city.toLowerCase(),
+          )}
           defaultValue={citiesOptions[0]}
         />
 

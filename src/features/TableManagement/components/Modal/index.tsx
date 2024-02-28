@@ -100,10 +100,12 @@ export const Modal: React.FC<ModalProps> = ({
               options={citiesOptions}
               onChange={handleSelectChange}
               value={citiesOptions.find(
-                (option) => option.value === formData.city,
+                (option) =>
+                  option.value.toLowerCase() === formData.city?.toLowerCase(),
               )}
               defaultValue={citiesOptions.find(
-                (option) => option.value === formData.city,
+                (option) =>
+                  option.value.toLowerCase() === formData.city?.toLowerCase(),
               )}
             />
           </div>
