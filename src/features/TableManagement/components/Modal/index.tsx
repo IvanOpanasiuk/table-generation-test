@@ -11,10 +11,11 @@ type ModalProps = {
     isOpen: boolean;
     rowData: TableRow | null;
     onSave: (newData: Partial<TableRow>) => void;
+    onDelete: (id: string) => void;
     onClose: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, rowData, onSave, onClose }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, rowData, onSave, onDelete, onClose }) => {
     const [formData, setFormData] = useState<Partial<TableRow>>({});
 
     useEffect(() => {
@@ -28,6 +29,11 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, rowData, onSave, onClose }
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onSave(formData);
+    };
+
+    const handleDelete = (e: React.FormEvent) => {
+        e.preventDefault();
+        onDelete(rowData.id);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +74,10 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, rowData, onSave, onClose }
                             defaultValue={citiesOptions[0].value}
                         />
                     </div>
-                    <Button type="submit" className="edit-modal__save-btn">Agree</Button>
+                    <div className={'edit-modal__form-button'}>
+                        <Button type="submit" className="edit-modal__save-btn">Agree</Button>
+                        <Button className="edit-modal__delete-btn" onClick={handleDelete}>Delete</Button>
+                    </div>
                 </form>
             </div>
         </div>,

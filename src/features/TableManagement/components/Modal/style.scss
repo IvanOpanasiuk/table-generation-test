@@ -19,6 +19,15 @@
   display: flex;
   flex-direction: column;
   max-height: 80%;
+
+  &__delete-btn {
+    display: none;
+  }
+
+  &__form-button {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .edit-modal__header {
@@ -43,6 +52,12 @@
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
+
+  input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 }
 
 .edit-modal__save-btn {
@@ -52,5 +67,9 @@
 @media (max-width: 768px) {
   .edit-modal {
     max-width: 100%;
+
+    .edit-modal__delete-btn {
+      display: flex;
+    }
   }
 }

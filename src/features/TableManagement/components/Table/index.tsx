@@ -24,6 +24,8 @@ export const TableComponent: React.FC<TableProps> = ({ tableIndex, tableId, data
 
     const handleDelete = React.useCallback((rowId: string) => {
         dispatch(deleteTableRow({ tableId, rowId }));
+        setIsModalOpen(false);
+        setEditingRow(null);
     }, [dispatch, tableId]);
 
 
@@ -78,10 +80,11 @@ export const TableComponent: React.FC<TableProps> = ({ tableIndex, tableId, data
             Header: 'Actions',
             id: 'actions',
             Cell: ({ row }) => (
-                <div>
+                <span>
+
                     <LinkButton className={'button-edit__row'} onClick={() => handleEdit(row.original)}>Edit</LinkButton>
                     <LinkButton className={'button-delete__row'} onClick={() => handleDelete(row.original.id)}>Delete</LinkButton>
-                </div>
+                </span>
             ),
         },
     ], []);
@@ -132,6 +135,7 @@ export const TableComponent: React.FC<TableProps> = ({ tableIndex, tableId, data
                     isOpen={isModalOpen}
                     rowData={editingRow}
                     onSave={handleSave}
+                    onDelete={handleDelete}
                     onClose={() => setIsModalOpen(false)}
                 />
             )}
